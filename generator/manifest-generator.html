@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manifest Generator</title>
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header><h1>Manifest Generator</h1><a href="../index.html">Back</a></header>
+<section>
+<input id="appid" placeholder="App ID">
+<input id="name" placeholder="Name">
+<input id="dir" placeholder="Install Dir">
+<input id="depot" placeholder="Depot ID">
+<input id="manifest" placeholder="Manifest ID">
+<button onclick="gen()">Download Manifest</button>
+</section>
+<script>
+function gen(){
+ const o={
+  AppID:appid.value,
+  Name:name.value,
+  InstallDir:dir.value,
+  Depots:{}
+ };
+ o.Depots[depot.value]={ManifestID:manifest.value};
+ const b=new Blob([JSON.stringify(o,null,2)],{type:"application/json"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(b);
+ a.download="manifest.vdf";
+ a.click();
+}
+</script>
+</body>
+</html>

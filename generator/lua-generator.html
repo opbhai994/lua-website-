@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lua Generator</title>
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header><h1>Lua Generator</h1><a href="../index.html">Back</a></header>
+<section>
+<textarea id="lua" rows="10" placeholder="-- Lua code here"></textarea>
+<button onclick="dl()">Download Lua</button>
+</section>
+<script>
+function dl(){
+ const t=document.getElementById('lua').value;
+ if(!t){alert("Empty");return;}
+ const b=new Blob([t],{type:"text/plain"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(b);
+ a.download="script.lua";
+ a.click();
+}
+</script>
+</body>
+</html>
